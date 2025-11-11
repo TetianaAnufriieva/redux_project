@@ -1,8 +1,11 @@
-import { useState, type FormEvent, type JSX } from 'react';
-import EditNoteIcon from '@mui/icons-material/EditNote';
-import { useDispatch } from 'react-redux';
-import type Dish from './types/Dish';
-
+import {
+  useState,
+  type FormEvent,
+  type JSX,
+} from "react";
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import { useDispatch } from "react-redux";
+import type Dish from "./types/Dish";
 
 export default function DishEditForm(props: { dish: Dish }): JSX.Element {
   const { dish } = props;
@@ -15,23 +18,24 @@ export default function DishEditForm(props: { dish: Dish }): JSX.Element {
   const [category, setCategory] = useState<string>(dish.category);
   const [image, setImage] = useState<string>(dish.image);
   const [price, setPrice] = useState<number>(dish.price);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
+  const dispatch = useDispatch();
 
   function validateInputs(): boolean {
-    if (title.trim() === '') {
-      setError('Название не должно быть пустым');
+    if (title.trim() === "") {
+      setError("Название не должно быть пустым");
       return false;
     }
-    if (category.trim() === '') {
-      setError('Выберите категорию');
+    if (category.trim() === "") {
+      setError("Выберите категорию");
       return false;
     }
-    if (image.trim() === '') {
-      setError('Заполните поле картинка');
+    if (image.trim() === "") {
+      setError("Заполните поле картинка");
       return false;
     }
     if (price < 0) {
-      setError('Цена не может быть отрицательной');
+      setError("Цена не может быть отрицательной");
       return false;
     }
     return true;
@@ -42,17 +46,21 @@ export default function DishEditForm(props: { dish: Dish }): JSX.Element {
     setTitle(dish.title);
     setPrice(dish.price);
     setImage(dish.image);
-    setError('');
+    setError("");
   }
-  const dispatch = useDispatch();
+
   function handleSubmit(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     if (validateInputs()) {
       dispatch({
-        type: 'dishes/edit',
+        type: "dishes/edit",
         payload: {
-          title, category, image, price, id: dish.id
-        }
+          title,
+          category,
+          image,
+          price,
+          id: dish.id,
+        },
       });
       resetInputsAndError();
     }
@@ -63,7 +71,7 @@ export default function DishEditForm(props: { dish: Dish }): JSX.Element {
       <EditNoteIcon onClick={handleToggle} />
       {toggle && (
         <form onSubmit={handleSubmit}>
-          {error && <div style={{ color: 'red' }}>{error}</div>}
+          {error && <div style={{ color: "red" }}>{error}</div>}
           <input
             type="text"
             placeholder="title"
@@ -81,10 +89,14 @@ export default function DishEditForm(props: { dish: Dish }): JSX.Element {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="" disabled>category</option>
+            <option value="" disabled>
+              category
+            </option>
             <option value="main">main</option>
             <option value="dessert">dessert</option>
-            <option selected value="snack">snack</option>
+            <option selected value="snack">
+              snack
+            </option>
           </select>
           <input
             type="number"
