@@ -1,8 +1,4 @@
-import {
-  useState,
-  type FormEvent,
-  type JSX,
-} from "react";
+import { useState, type FormEvent, type JSX } from "react";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { useDispatch } from "react-redux";
 import type Dish from "./types/Dish";
@@ -67,27 +63,57 @@ export default function DishEditForm(props: { dish: Dish }): JSX.Element {
   }
 
   return (
-    <div>
-      <EditNoteIcon onClick={handleToggle} />
+    <div className="relative inline-block">
+      <button
+        onClick={handleToggle}
+        className="p-2 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-600 hover:text-blue-700 transition-all shadow-sm"
+        title="Редактировать блюдо"
+      >
+        <EditNoteIcon fontSize="small" />
+      </button>
       {toggle && (
-        <form onSubmit={handleSubmit}>
-          {error && <div style={{ color: "red" }}>{error}</div>}
+        <form
+          onSubmit={handleSubmit}
+          className="absolute top-10 left-0 z-20 flex flex-col gap-2 bg-white p-4 rounded-xl shadow-lg border border-gray-200 w-64"
+        >
+          {error && <div className="text-red-600 text-sm">{error}</div>}
+          <label
+            htmlFor="title"
+            className="mb-1 text-sm font-medium text-gray-700 flex w-8"
+          >
+            title
+          </label>
           <input
             type="text"
             placeholder="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            className="border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
+          <label
+            htmlFor="title"
+            className="mb-1 text-sm font-medium text-gray-700 w-8"
+          >
+            image
+          </label>
           <input
             type="text"
             placeholder="image"
             value={image}
             onChange={(e) => setImage(e.target.value)}
+            className="border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
+          <label
+            htmlFor="title"
+            className="mb-1 text-sm font-medium text-gray-700 w-8"
+          >
+            category
+          </label>
           <select
             name="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            className="border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             <option value="" disabled>
               category
@@ -98,10 +124,17 @@ export default function DishEditForm(props: { dish: Dish }): JSX.Element {
               snack
             </option>
           </select>
+          <label
+            htmlFor="title"
+            className="mb-1 text-sm font-medium text-gray-700 w-8"
+          >
+            price
+          </label>
           <input
             type="number"
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
+            className="border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button type="submit">Сохранить</button>
         </form>

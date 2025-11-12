@@ -6,7 +6,7 @@ const initialState: Dish[] = [
   {
     id: uid(),
     title: "Pie",
-    category: "Dessert",
+    category: "dessert",
     price: 12,
     image:
       "https://fsd.multiurok.ru/html/2018/05/03/s_5aeb2280cc6d6/894065_15.jpeg",

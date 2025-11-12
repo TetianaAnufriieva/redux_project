@@ -48,25 +48,33 @@ export default function DishForm(): JSX.Element {
   }
   return (
     <div>
-      <h1>Форма создания меню</h1>
-      <form onSubmit={handleSubmit}>
-        {error && <div style={{ color: "red" }}>{error}</div>}
+      <p className="bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text text-5xl font-extrabold text-transparent">
+        Форма создания меню
+      </p>
+      {error && <div style={{ color: "red" }}>{error}</div>}
+      <form
+        onSubmit={handleSubmit}
+        className="shadow-xl p-4 flex flex-row gap-4 justify-between"
+      >
         <input
           type="text"
           placeholder="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          className="border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <input
           type="text"
           placeholder="image"
           value={image}
           onChange={(e) => setImage(e.target.value)}
+          className="border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <select
           name="category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          className="border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
           <option value="" disabled>
             category
@@ -79,8 +87,11 @@ export default function DishForm(): JSX.Element {
           type="number"
           value={price}
           onChange={(e) => setPrice(Number(e.target.value))}
+          className="border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
-        <button type="submit">Создать блюдо</button>
+        <button className="rounded-md" type="submit">
+          Добавить блюдо
+        </button>
       </form>
     </div>
   );
