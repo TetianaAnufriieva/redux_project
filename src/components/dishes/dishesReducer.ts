@@ -1,6 +1,5 @@
 import type Dish from "./types/Dish";
 import type { Action } from "./types/Action";
-import { Category } from "@mui/icons-material";
 import { uid } from "uid";
 
 const initialState: Dish[] = [
