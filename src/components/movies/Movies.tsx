@@ -29,12 +29,14 @@ export default function Movies(): JSX.Element {
                 <p className="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-semibold px-2 py-1 rounded-md shadow-md">
                   {movie.genre}
                 </p>
-
-                <img
-                  className="w-full h-64 object-cover lg:h-80 rounded-t-xl bg-gray-200"
-                  src={movie.image}
-                  alt={movie.title}
-                />
+                <div className="w-full">
+                  <img
+                    // className="w-full h-64 object-cover lg:h-80 rounded-t-xl bg-gray-200"
+                    className="w-full h-auto max-h-48 sm:max-h-56 md:max-h-64 lg:max-h-80 object-cover rounded-t-xl bg-gray-200 transition-all"
+                    src={movie.image}
+                    alt={movie.title}
+                  />
+                </div>
               </div>
 
               {/* ---- SIGNATURE BLOCK ---- */}
