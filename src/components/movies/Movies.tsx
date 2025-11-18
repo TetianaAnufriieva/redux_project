@@ -25,18 +25,24 @@ export default function Movies(): JSX.Element {
               key={movie.id}
               className="relative group bg-white rounded-xl shadow-sm hover:shadow-md transition"
             >
+              {/* ---- IMAGE ---- */}
               <div className="relative">
-                <p className="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-semibold px-2 py-1 rounded-md shadow-md">
+                <p className="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-semibold px-2 py-1 rounded-md shadow-md z-10">
                   {movie.genre}
                 </p>
-                <div className="w-full">
-                  <img
-                    // className="w-full h-64 object-cover lg:h-80 rounded-t-xl bg-gray-200"
-                    className="w-full h-auto max-h-48 sm:max-h-56 md:max-h-64 lg:max-h-80 object-cover rounded-t-xl bg-gray-200 transition-all"
-                    src={movie.image}
-                    alt={movie.title}
-                  />
-                </div>
+
+                <img
+                  src={movie.image}
+                  alt={movie.title}
+                  className={`
+                    w-full object-cover rounded-t-xl bg-gray-200 transition-all
+
+                    aspect-[3/4]       /* mobile: высокая картинка */
+                    sm:aspect-[2/3]    /* small tablets */
+                    md:aspect-[13/20]  /* medium screens */
+                    lg:aspect-[1/1.5]  /* desktop */
+                  `}
+                />
               </div>
 
               {/* ---- SIGNATURE BLOCK ---- */}
